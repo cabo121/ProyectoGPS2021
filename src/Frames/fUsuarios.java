@@ -26,7 +26,7 @@ public class fUsuarios extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
     }
 
     private String accion = "Guardar";
@@ -43,7 +43,7 @@ public class fUsuarios extends javax.swing.JFrame {
     }
 
     void habilitar() {
-        jtb_id.setVisible(true);
+        jtb_id.setEnabled(false);
         jtb_nombre3.setVisible(true);
         jtb_contra.setVisible(true);
         jtb_ingreso.setVisible(true);
@@ -56,6 +56,7 @@ public class fUsuarios extends javax.swing.JFrame {
         jtb_contra.setText("");
         jtb_ingreso.setText("");
         jtb_idBusc.setText("");
+        jtb_tipo.setText("");
     }
 
     void mostrar(String buscar) {
@@ -86,7 +87,6 @@ public class fUsuarios extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jtb_nombre3 = new javax.swing.JTextField();
-        jtb_contra = new javax.swing.JTextField();
         jbot_guardar = new javax.swing.JButton();
         jbot_cancelar = new javax.swing.JButton();
         jbot_nuevo = new javax.swing.JButton();
@@ -94,6 +94,9 @@ public class fUsuarios extends javax.swing.JFrame {
         jtb_ingreso = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jtb_id = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jtb_tipo = new javax.swing.JTextField();
+        jtb_contra = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable_usuarios = new javax.swing.JTable();
@@ -124,12 +127,7 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jtb_contra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtb_contraActionPerformed(evt);
-            }
-        });
-
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +135,7 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +143,7 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +167,16 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setText("Tipo:");
+
+        jtb_tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtb_tipoActionPerformed(evt);
+            }
+        });
+
+        jtb_contra.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -179,25 +189,33 @@ public class fUsuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jbot_nuevo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                                    .addComponent(jbot_guardar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jbot_cancelar))
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jLabel11))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jtb_nombre3)
-                                        .addComponent(jtb_contra)
-                                        .addComponent(jtb_ingreso, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtb_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jbot_nuevo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbot_guardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbot_cancelar))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtb_nombre3))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtb_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -213,13 +231,17 @@ public class fUsuarios extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtb_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jtb_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jtb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtb_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                    .addComponent(jLabel12)
+                    .addComponent(jtb_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbot_cancelar)
                     .addComponent(jbot_guardar)
@@ -254,6 +276,7 @@ public class fUsuarios extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_usuarios);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,8 +284,9 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("Buscar por ID de Pan:");
+        jLabel14.setText("Buscar por ID:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/home.png"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +294,7 @@ public class fUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +304,7 @@ public class fUsuarios extends javax.swing.JFrame {
 
         jLabel15.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,24 +391,14 @@ public class fUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtb_nombre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_nombre3ActionPerformed
-        jtb_nombre.transferFocus();
+        jtb_nombre3.transferFocus();
     }//GEN-LAST:event_jtb_nombre3ActionPerformed
-
-    private void jtb_contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_contraActionPerformed
-        jtb_contra.transferFocus();
-    }//GEN-LAST:event_jtb_contraActionPerformed
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
 
-        if (jtb_id.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar ID");
-            jtb_id.requestFocus();
-            return;
-        }
-
         if (jtb_nombre3.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre");
-            jtb_nombre.requestFocus();
+            jtb_nombre3.requestFocus();
             return;
         }
 
@@ -397,14 +413,20 @@ public class fUsuarios extends javax.swing.JFrame {
             jtb_ingreso.requestFocus();
             return;
         }
+        
+        if (jtb_tipo.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un tipo de usuario");
+            jtb_tipo.requestFocus();
+            return;
+        }
 
         dUsuarios dts = new dUsuarios();
         lUsuarios func = new lUsuarios();
 
-        dts.setId_usuarios(Integer.parseInt(jtb_id.getText()));
         dts.setUsuario(jtb_nombre3.getText());
         dts.setContra(jtb_contra.getText());
         dts.setFechaIngreso(jtb_ingreso.getText());
+        dts.setTipo(jtb_tipo.getText());
 
         if (accion.equals("Guardar")) {
             if (func.insertar(dts)) {
@@ -415,6 +437,12 @@ public class fUsuarios extends javax.swing.JFrame {
 
         } else if (accion.equals("Actualizar")) {
             dts.setId_usuarios(Integer.parseInt(jtb_id.getText()));
+            
+            if (jtb_contra.getText().length() == 0) {
+                JOptionPane.showConfirmDialog(rootPane, "Ingrese su contrasena");
+                jtb_contra.requestFocus();
+                return;
+            }
 
             if (func.actualizar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El Usuario fue actualizado satisfactoriamente");
@@ -440,10 +468,6 @@ public class fUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtb_ingresoActionPerformed
 
-    private void jtb_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtb_idActionPerformed
-
     private void jtable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtable_usuariosMouseClicked
         jbot_guardar.setText("Actualizar");
         habilitar();
@@ -453,7 +477,8 @@ public class fUsuarios extends javax.swing.JFrame {
 
         jtb_id.setText(jtable_usuarios.getValueAt(fila, 0).toString());
         jtb_nombre3.setText(jtable_usuarios.getValueAt(fila, 1).toString());
-        jtb_contra.setText(jtable_usuarios.getValueAt(fila, 3).toString());
+        jtb_contra.setText("");
+        jtb_tipo.setText(jtable_usuarios.getValueAt(fila, 3).toString());
         jtb_ingreso.setText(jtable_usuarios.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_jtable_usuariosMouseClicked
 
@@ -462,16 +487,16 @@ public class fUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!jtb_idBusc.getText().equals("")) {
+        if (!jtb_id.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane,
-                "Estás seguro de Eliminar el Registro " + jtb_idBusc.getText()
+                "Estás seguro de Eliminar el Registro " + jtb_id.getText()
                 + " ?", "Confirmar", 2);
 
             if (confirmacion == 0) {
                 dUsuarios dts = new dUsuarios();
                 lUsuarios func = new lUsuarios();
 
-                dts.setId_usuarios(Integer.parseInt(jtb_idBusc.getText()));
+                dts.setId_usuarios(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
@@ -491,6 +516,14 @@ public class fUsuarios extends javax.swing.JFrame {
         mostrar("");
         habilitar();
     }//GEN-LAST:event_jbot_actualizarActionPerformed
+
+    private void jtb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_tipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtb_tipoActionPerformed
+
+    private void jtb_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtb_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,16 +568,8 @@ public class fUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbot_actualizar;
@@ -556,13 +581,11 @@ public class fUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton jbot_salir;
     private javax.swing.JLabel jlab_registros;
     private javax.swing.JTable jtable_usuarios;
-    private javax.swing.JTextField jtb_contra;
+    private javax.swing.JPasswordField jtb_contra;
     private javax.swing.JTextField jtb_id;
     private javax.swing.JTextField jtb_idBusc;
     private javax.swing.JTextField jtb_ingreso;
-    private javax.swing.JTextField jtb_nombre;
-    private javax.swing.JTextField jtb_nombre1;
-    private javax.swing.JTextField jtb_nombre2;
     private javax.swing.JTextField jtb_nombre3;
+    private javax.swing.JTextField jtb_tipo;
     // End of variables declaration//GEN-END:variables
 }

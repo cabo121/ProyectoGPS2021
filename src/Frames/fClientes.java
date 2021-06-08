@@ -26,7 +26,8 @@ public class fClientes extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
+        jtb_id.setEnabled(false);
     }
     
     private String accion = "Guardar";
@@ -36,7 +37,6 @@ public class fClientes extends javax.swing.JFrame {
         jtb_nombre.setVisible(false);
         jtb_direccion.setVisible(false);
         jtb_telefono.setVisible(false);
-        jtb_pedido.setVisible(false);
 
         jbot_nuevo.setEnabled(false);
         jbot_guardar.setEnabled(false);
@@ -47,7 +47,6 @@ public class fClientes extends javax.swing.JFrame {
         jtb_nombre.setVisible(true);
         jtb_direccion.setVisible(true);
         jtb_telefono.setVisible(true);
-        jtb_pedido.setVisible(true);
 
         jbot_nuevo.setEnabled(true);
         jbot_guardar.setEnabled(true);
@@ -55,8 +54,8 @@ public class fClientes extends javax.swing.JFrame {
         jtb_nombre.setText("");
         jtb_direccion.setText("");
         jtb_telefono.setText("");
-        jtb_pedido.setText("");
         jtb_idBusc.setText("");
+        jtb_id.setText("");
     }
 
     void mostrar(String buscar) {
@@ -93,8 +92,6 @@ public class fClientes extends javax.swing.JFrame {
         jbot_guardar = new javax.swing.JButton();
         jbot_cancelar = new javax.swing.JButton();
         jbot_nuevo = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jtb_pedido = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jtb_id = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -149,6 +146,7 @@ public class fClientes extends javax.swing.JFrame {
             }
         });
 
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +154,7 @@ public class fClientes extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,23 +162,11 @@ public class fClientes extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbot_nuevoActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Pedido");
-
-        jtb_pedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtb_pedidoActionPerformed(evt);
-            }
-        });
-        jtb_pedido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtb_pedidoKeyTyped(evt);
             }
         });
 
@@ -209,9 +196,9 @@ public class fClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtb_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
@@ -225,11 +212,7 @@ public class fClientes extends javax.swing.JFrame {
                                 .addComponent(jbot_guardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbot_cancelar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -251,11 +234,7 @@ public class fClientes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtb_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbot_cancelar)
                     .addComponent(jbot_guardar)
@@ -290,6 +269,7 @@ public class fClientes extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_clientes);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +279,7 @@ public class fClientes extends javax.swing.JFrame {
 
         jLabel8.setText("Buscar por ID de Cliente:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir.gif"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +287,7 @@ public class fClientes extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,6 +297,7 @@ public class fClientes extends javax.swing.JFrame {
 
         jLabel9.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,33 +319,34 @@ public class fClientes extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
+                                .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbot_buscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbot_actualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbot_eliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbot_salir)))
+                                .addComponent(jbot_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbot_buscar)
-                    .addComponent(jbot_actualizar)
-                    .addComponent(jbot_eliminar)
-                    .addComponent(jbot_salir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbot_buscar)
+                        .addComponent(jbot_actualizar)
+                        .addComponent(jbot_eliminar))
+                    .addComponent(jbot_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -417,12 +401,6 @@ public class fClientes extends javax.swing.JFrame {
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
 
-        if (jtb_id.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un ID");
-            jtb_id.requestFocus();
-            return;
-        }
-
         if (jtb_nombre.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre");
             jtb_nombre.requestFocus();
@@ -440,21 +418,13 @@ public class fClientes extends javax.swing.JFrame {
             jtb_telefono.requestFocus();
             return;
         }
-        
-        if (jtb_pedido.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un pedido");
-            jtb_pedido.requestFocus();
-            return;
-        }
 
         dClientes dts = new dClientes();
         lClientes func = new lClientes();
 
-        dts.setNumClient(Integer.parseInt(jtb_id.getText()));
         dts.setNombre(jtb_nombre.getText());
         dts.setDireccion(jtb_direccion.getText());
         dts.setTelefono(jtb_telefono.getText());
-        dts.setPedido(Integer.parseInt(jtb_pedido.getText()));
 
         if (accion.equals("Guardar")) {
             if (func.insertar(dts)) {
@@ -497,7 +467,6 @@ public class fClientes extends javax.swing.JFrame {
         jtb_nombre.setText(jtable_clientes.getValueAt(fila, 1).toString());
         jtb_direccion.setText(jtable_clientes.getValueAt(fila, 2).toString());
         jtb_telefono.setText(jtable_clientes.getValueAt(fila, 3).toString());
-        jtb_pedido.setText(jtable_clientes.getValueAt(fila, 4).toString());
         elim = jtable_clientes.getValueAt(fila, 0).toString();
     }//GEN-LAST:event_jtable_clientesMouseClicked
 
@@ -506,20 +475,23 @@ public class fClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!elim.equals("")) {
+        if (!jtb_id.equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, 
-                    "Estás seguro de Eliminar el cliente " + elim 
+                    "Estás seguro de Eliminar el cliente " + jtb_id.getText()
                             + " ?", "Confirmar", 2);
 
             if (confirmacion == 0) {
                 dClientes dts = new dClientes();
                 lClientes func = new lClientes();
 
-                dts.setNumClient(Integer.parseInt(elim));
+                dts.setNumClient(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
             }
+            
+            jbot_guardar.setText("Guardar");
+            accion = "Guardar";
         }
     }//GEN-LAST:event_jbot_eliminarActionPerformed
 
@@ -535,10 +507,6 @@ public class fClientes extends javax.swing.JFrame {
         mostrar("");
         habilitar();
     }//GEN-LAST:event_jbot_actualizarActionPerformed
-
-    private void jtb_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_pedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtb_pedidoActionPerformed
 
     private void jtb_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_idActionPerformed
         // TODO add your handling code here:
@@ -576,17 +544,6 @@ public class fClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese solo letras");
         }
     }//GEN-LAST:event_jtb_nombreKeyTyped
-
-    private void jtb_pedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtb_pedidoKeyTyped
-        // TODO add your handling code here:
-        char validar = evt.getKeyChar();
-        
-        if (Character.isLetter(validar)) {
-            evt.consume();
-            
-            JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-        }
-    }//GEN-LAST:event_jtb_pedidoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -629,7 +586,6 @@ public class fClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -649,7 +605,6 @@ public class fClientes extends javax.swing.JFrame {
     private javax.swing.JTextField jtb_id;
     private javax.swing.JTextField jtb_idBusc;
     private javax.swing.JTextField jtb_nombre;
-    private javax.swing.JTextField jtb_pedido;
     private javax.swing.JTextField jtb_telefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,8 @@ public class fRepartidores extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
+        jtb_id.setEnabled(false);
     }
     
     private String accion = "Guardar";
@@ -39,7 +40,6 @@ public class fRepartidores extends javax.swing.JFrame {
         jtb_telefono.setVisible(false);
         jtb_edad.setVisible(false);
         jtb_tipo.setVisible(false);
-        jtb_pedido.setVisible(false);
 
         jbot_nuevo.setEnabled(false);
         jbot_guardar.setEnabled(false);
@@ -53,7 +53,6 @@ public class fRepartidores extends javax.swing.JFrame {
         jtb_telefono.setVisible(true);
         jtb_edad.setVisible(true);
         jtb_tipo.setVisible(true);
-        jtb_pedido.setVisible(true);
 
         jbot_nuevo.setEnabled(true);
         jbot_guardar.setEnabled(true);
@@ -64,7 +63,6 @@ public class fRepartidores extends javax.swing.JFrame {
         jtb_telefono.setText("");
         jtb_edad.setText("");
         jtb_tipo.setText("");
-        jtb_pedido.setText("");
         jtb_idBusc.setText("");
     }
 
@@ -108,8 +106,6 @@ public class fRepartidores extends javax.swing.JFrame {
         jtb_id = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jtb_tipo = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jtb_pedido = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable_repart = new javax.swing.JTable();
@@ -154,6 +150,7 @@ public class fRepartidores extends javax.swing.JFrame {
             }
         });
 
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +158,7 @@ public class fRepartidores extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +166,7 @@ public class fRepartidores extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,14 +198,6 @@ public class fRepartidores extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Pedido:");
-
-        jtb_pedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtb_pedidoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -224,6 +215,14 @@ public class fRepartidores extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtb_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -236,19 +235,7 @@ public class fRepartidores extends javax.swing.JFrame {
                                 .addComponent(jbot_guardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbot_cancelar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtb_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtb_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -278,11 +265,7 @@ public class fRepartidores extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtb_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbot_cancelar)
                     .addComponent(jbot_guardar)
@@ -317,6 +300,7 @@ public class fRepartidores extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_repart);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +310,7 @@ public class fRepartidores extends javax.swing.JFrame {
 
         jLabel8.setText("Buscar por ID de Repartidor:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/home.png"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,6 +318,7 @@ public class fRepartidores extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,6 +328,7 @@ public class fRepartidores extends javax.swing.JFrame {
 
         jLabel9.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,12 +428,6 @@ public class fRepartidores extends javax.swing.JFrame {
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
 
-        if (jtb_id.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar ID");
-            jtb_id.requestFocus();
-            return;
-        }
-
         if (jtb_nombre.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre");
             jtb_nombre.requestFocus();
@@ -477,22 +458,14 @@ public class fRepartidores extends javax.swing.JFrame {
             return;
         }
 
-        if (jtb_pedido.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un pedido");
-            jtb_pedido.requestFocus();
-            return;
-        }
-
         dRepartidores dts = new dRepartidores();
         lRepartidor func = new lRepartidor();
 
-        dts.setId_repart(Integer.parseInt(jtb_id.getText()));
         dts.setNombre(jtb_nombre.getText());
         dts.setDireccion(jtb_direccion.getText());
         dts.setTelefono(jtb_telefono.getText());
         dts.setEdad(jtb_edad.getText());
         dts.setTipo(Integer.parseInt(jtb_tipo.getText()));
-        dts.setPedido(Integer.parseInt(jtb_pedido.getText()));
 
         if (accion.equals("Guardar")) {
             if (func.insertar(dts)) {
@@ -536,10 +509,6 @@ public class fRepartidores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtb_tipoActionPerformed
 
-    private void jtb_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_pedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtb_pedidoActionPerformed
-
     private void jtable_repartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtable_repartMouseClicked
         jbot_guardar.setText("Actualizar");
         habilitar();
@@ -553,7 +522,6 @@ public class fRepartidores extends javax.swing.JFrame {
         jtb_telefono.setText(jtable_repart.getValueAt(fila, 3).toString());
         jtb_edad.setText(jtable_repart.getValueAt(fila, 4).toString());
         jtb_tipo.setText(jtable_repart.getValueAt(fila, 5).toString());
-        jtb_pedido.setText(jtable_repart.getValueAt(fila, 6).toString());
     }//GEN-LAST:event_jtable_repartMouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
@@ -561,20 +529,23 @@ public class fRepartidores extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!jtb_idBusc.getText().equals("")) {
+        if (!jtb_id.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane,
-                "Estás seguro de Eliminar el repartidor " + jtb_idBusc.getText()
+                "Estás seguro de Eliminar el repartidor " + jtb_id.getText()
                 + " ?", "Confirmar", 2);
 
             if (confirmacion == 0) {
                 dRepartidores dts = new dRepartidores();
                 lRepartidor func = new lRepartidor();
 
-                dts.setId_repart(Integer.parseInt(jtb_idBusc.getText()));
+                dts.setId_repart(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
             }
+            
+            jbot_guardar.setText("Guardar");
+            accion = "Guardar";
         }
     }//GEN-LAST:event_jbot_eliminarActionPerformed
 
@@ -630,7 +601,6 @@ public class fRepartidores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -654,7 +624,6 @@ public class fRepartidores extends javax.swing.JFrame {
     private javax.swing.JTextField jtb_id;
     private javax.swing.JTextField jtb_idBusc;
     private javax.swing.JTextField jtb_nombre;
-    private javax.swing.JTextField jtb_pedido;
     private javax.swing.JTextField jtb_telefono;
     private javax.swing.JTextField jtb_tipo;
     // End of variables declaration//GEN-END:variables

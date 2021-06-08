@@ -31,10 +31,9 @@ public class lRepartidor {
 
         String[] titulos = {"ID Repartidor", "Nombre del Repartidor", 
             "Telefono del Empleado", "Direccion del Empleado", 
-            "Edad del empleado", "Tipo de Ruta", 
-            "ID del Pedido"};
+            "Edad del empleado", "Tipo de Ruta"};
         
-        String[] registros = new String[7];
+        String[] registros = new String[6];
         totalregistros = 0;
 
         modelo = new DefaultTableModel(null, titulos);
@@ -56,7 +55,42 @@ public class lRepartidor {
                 registros[3] = rs.getString("direccion");
                 registros[4] = rs.getString("edad");
                 registros[5] = rs.getString("tipo");
-                registros[6] = rs.getString("pedido");
+
+                totalregistros = totalregistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+     
+     
+    public DefaultTableModel mostrar2(String buscar) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID Repartidor", "Nombre del Repartidor"};
+        
+        String[] registros = new String[2];
+        totalregistros = 0;
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        if (buscar.equals("")) {
+            sSQL = "select id_repart, nombre from repartidor;";
+        } else {
+            sSQL = "select id_repart, nombre from repartidor where id_repart = '" + buscar + "'";
+        }
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                registros[0] = rs.getString("id_repart");
+                registros[1] = rs.getString("nombre");
 
                 totalregistros = totalregistros + 1;
                 modelo.addRow(registros);
@@ -71,8 +105,8 @@ public class lRepartidor {
 
     public boolean insertar(dRepartidores dts) {
         sSQL = "INSERT INTO repartidor (`id_repart`, `nombre`, `telefono`, "
-                + "`direccion`, `edad`, `tipo`, `pedido`) "
-                + "VALUES (?,?,?,?,?,?,?);";
+                + "`direccion`, `edad`, `tipo`) "
+                + "VALUES (?,?,?,?,?,?);";
         try {
 
             PreparedStatement pst = cn.prepareStatement(sSQL);
@@ -82,7 +116,6 @@ public class lRepartidor {
             pst.setString(4, dts.getDireccion());
             pst.setString(5, dts.getEdad());
             pst.setInt(6, dts.getTipo());
-            pst.setInt(7, dts.getPedido());
 
             int n = pst.executeUpdate();
 
@@ -100,7 +133,7 @@ public class lRepartidor {
 
     public boolean actualizar(dRepartidores dts) {
         sSQL = "update repartidor set nombre = ? , telefono = ? , direccion= ? , "
-                + "edad = ? , tipo = ?, pedido = ?"
+                + "edad = ? , tipo = ?"
                 + " where id_repart = ?;";
 
         try {
@@ -110,8 +143,7 @@ public class lRepartidor {
             pst.setString(3, dts.getDireccion());
             pst.setString(4, dts.getEdad());
             pst.setInt(5, dts.getTipo());
-            pst.setInt(6, dts.getPedido());
-            pst.setInt(7, dts.getId_repart());
+            pst.setInt(6, dts.getId_repart());
 
             int n = pst.executeUpdate();
 

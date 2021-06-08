@@ -97,7 +97,7 @@ public class lEmpleados {
     }
 
     public boolean actualizar(dEmpleados dts) {
-        sSQL = "update camionero set nombre = ? , direccion = ? , telefono = ? , edad = ? , turno = ?, fechaIngreso = ?"
+        sSQL = "update empleados set nombre = ? , direccion = ? , telefono = ? , edad = ? , turno = ?, fechaIngreso = ?"
                 + " where id_empleado = ?;";
 
         try {

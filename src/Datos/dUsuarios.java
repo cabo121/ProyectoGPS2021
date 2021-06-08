@@ -13,6 +13,15 @@ public class dUsuarios {
     int id_usuarios;
     String usuario;
     String contra;
+    String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     String fechaIngreso;
 
     public int getId_usuarios() {

@@ -99,7 +99,7 @@ public class lPan {
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getClase());
             pst.setInt(3, dts.getCantidad());
-            pst.setInt(5, dts.getId_pan());
+            pst.setInt(4, dts.getId_pan());
 
             int n = pst.executeUpdate();
 

@@ -6,8 +6,13 @@
 package Frames;
 
 import Datos.dPedidos;
+import Logica.lClientes;
 import Logica.lEmpleados;
 import Logica.lPedidos;
+import Logica.lRepartidor;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +32,8 @@ public class fPedidos extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
+        jtb_id.setEnabled(false);
     }
     
     private String accion = "Guardar";
@@ -88,6 +94,20 @@ public class fPedidos extends javax.swing.JFrame {
 
             jtable_pedido.setModel(modelo);
             jlab_registros.setText(Integer.toString(func.totalregistros));
+            
+            
+            DefaultTableModel modelo2;
+            lRepartidor func2 = new lRepartidor();
+            modelo2 = func2.mostrar2(buscar);
+
+            jTable_repar.setModel(modelo2);
+            
+            
+            DefaultTableModel modelo3;
+            lClientes func3 = new lClientes();
+            modelo3 = func3.mostrar2(buscar);
+
+            jTable_client.setModel(modelo3);
 
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
@@ -141,6 +161,12 @@ public class fPedidos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jlab_registros = new javax.swing.JLabel();
         jbot_actualizar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_repar = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_client = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,18 +188,29 @@ public class fPedidos extends javax.swing.JFrame {
             }
         });
 
+        jtb_idClient.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_idClientFocusLost(evt);
+            }
+        });
         jtb_idClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_idClientActionPerformed(evt);
             }
         });
 
+        jtb_IDRepart.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_IDRepartFocusLost(evt);
+            }
+        });
         jtb_IDRepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_IDRepartActionPerformed(evt);
             }
         });
 
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +218,7 @@ public class fPedidos extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +226,7 @@ public class fPedidos extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +236,11 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel7.setText("Nombre del Repartidor:");
 
+        jtb_repart.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_repartFocusLost(evt);
+            }
+        });
         jtb_repart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_repartActionPerformed(evt);
@@ -213,6 +257,11 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel11.setText("Cantidad de Azucar:");
 
+        jtb_azuc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_azucFocusLost(evt);
+            }
+        });
         jtb_azuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_azucActionPerformed(evt);
@@ -221,12 +270,22 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel12.setText("Cantidad de Ingegral:");
 
+        jtb_int.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_intFocusLost(evt);
+            }
+        });
         jtb_int.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_intActionPerformed(evt);
             }
         });
 
+        jtb_cliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtb_clienteFocusGained(evt);
+            }
+        });
         jtb_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_clienteActionPerformed(evt);
@@ -235,6 +294,11 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel13.setText("Nombre del Cliente:");
 
+        jtb_fran.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtb_franFocusLost(evt);
+            }
+        });
         jtb_fran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtb_franActionPerformed(evt);
@@ -352,7 +416,7 @@ public class fPedidos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtb_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtb_azuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
@@ -403,6 +467,7 @@ public class fPedidos extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_pedido);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,6 +477,7 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel8.setText("Buscar por ID de Pedido:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/home.png"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,6 +485,7 @@ public class fPedidos extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/search.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,12 +495,43 @@ public class fPedidos extends javax.swing.JFrame {
 
         jLabel9.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbot_actualizarActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Repartidores:");
+
+        jLabel3.setText("Clientes:");
+
+        jTable_repar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_repar);
+
+        jTable_client.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_client);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -443,26 +541,34 @@ public class fPedidos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlab_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jbot_buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbot_actualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbot_eliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbot_salir)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtb_idBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jbot_buscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addComponent(jbot_actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbot_eliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbot_salir))
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jlab_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,11 +583,20 @@ public class fPedidos extends javax.swing.JFrame {
                     .addComponent(jbot_salir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9))
                     .addComponent(jlab_registros, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -526,12 +641,6 @@ public class fPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jtb_IDRepartActionPerformed
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
-
-        if (jtb_id.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un ID");
-            jtb_id.requestFocus();
-            return;
-        }
 
         if (jtb_nombre.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre al pedido");
@@ -596,7 +705,6 @@ public class fPedidos extends javax.swing.JFrame {
         dPedidos dts = new dPedidos();
         lPedidos func = new lPedidos();
 
-        dts.setId_pedido(Integer.parseInt(jtb_id.getText()));
         dts.setNombre(jtb_nombre.getText());
         dts.setNumClient(Integer.parseInt(jtb_idClient.getText()));
         dts.setCliente(jtb_cliente.getText());
@@ -679,20 +787,23 @@ public class fPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!jtb_idBusc.getText().equals("")) {
+        if (!jtb_id.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane,
-                "Estás seguro de Eliminar el Pedido " + jtb_idBusc.getText()
+                "Estás seguro de Eliminar el Pedido " + jtb_id.getText()
                 + " ?", "Confirmar", 2);
 
             if (confirmacion == 0) {
                 dPedidos dts = new dPedidos();
                 lPedidos func = new lPedidos();
 
-                dts.setId_pedido(Integer.parseInt(jtb_idBusc.getText()));
+                dts.setId_pedido(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
             }
+            
+            jbot_guardar.setText("Guardar");
+            accion = "Guardar";
         }
     }//GEN-LAST:event_jbot_eliminarActionPerformed
 
@@ -724,6 +835,85 @@ public class fPedidos extends javax.swing.JFrame {
     private void jtb_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_fechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtb_fechaActionPerformed
+
+    private void jtb_franFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_franFocusLost
+        
+        int total = Integer.parseInt(jtb_int.getText()) 
+                + Integer.parseInt(jtb_azuc.getText()) 
+                + Integer.parseInt(jtb_fran.getText());
+        
+        jtb_total.setText(total + "");
+    }//GEN-LAST:event_jtb_franFocusLost
+
+    private void jtb_azucFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_azucFocusLost
+        int total = Integer.parseInt(jtb_int.getText()) 
+                + Integer.parseInt(jtb_azuc.getText()) 
+                + Integer.parseInt(jtb_fran.getText());
+        
+        jtb_total.setText(total + "");
+    }//GEN-LAST:event_jtb_azucFocusLost
+
+    private void jtb_intFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_intFocusLost
+        int total = Integer.parseInt(jtb_int.getText()) 
+                + Integer.parseInt(jtb_azuc.getText()) 
+                + Integer.parseInt(jtb_fran.getText());
+        
+        jtb_total.setText(total + "");
+    }//GEN-LAST:event_jtb_intFocusLost
+
+    private void jtb_idClientFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_idClientFocusLost
+        
+        int fila = jTable_client.getRowCount();
+        int pos = Integer.parseInt(jtb_idClient.getText());
+        boolean band = false;
+        
+        for (int i = 0; i < jTable_client.getRowCount(); i++){
+            if (pos == Integer.parseInt(jTable_client.getValueAt(i, 0).toString())){
+                jtb_cliente.setText(jTable_client.getValueAt(i, 1).toString());
+                band = true;
+            }
+        }
+        
+        if (!band){
+            JOptionPane.showMessageDialog(rootPane, "El id no coincide con ningun repartidor");
+            jtb_cliente.setText("");
+            jtb_idClient.setText("");
+            jtb_cliente.transferFocusBackward();
+        }
+        
+    }//GEN-LAST:event_jtb_idClientFocusLost
+
+    private void jtb_clienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_clienteFocusGained
+        
+    }//GEN-LAST:event_jtb_clienteFocusGained
+
+    private void jtb_IDRepartFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_IDRepartFocusLost
+        int fila = jTable_repar.getRowCount();
+        int pos = Integer.parseInt(jtb_IDRepart.getText());
+        boolean band = false;
+        
+        for (int i = 0; i < jTable_repar.getRowCount(); i++){
+            if (pos == Integer.parseInt(jTable_repar.getValueAt(i, 0).toString())){
+                jtb_repart.setText(jTable_repar.getValueAt(i, 1).toString());
+                band = true;
+            }
+        }
+        
+        if (!band){
+            JOptionPane.showMessageDialog(rootPane, "El id no coincide con ningun repartidor");
+            jtb_repart.setText("");
+            jtb_IDRepart.setText("");
+            jtb_repart.transferFocusBackward();
+        }
+            
+    }//GEN-LAST:event_jtb_IDRepartFocusLost
+
+    private void jtb_repartFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtb_repartFocusLost
+        Date myDate = new Date();
+        
+        String fecha = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
+        jtb_fecha.setText(fecha);
+    }//GEN-LAST:event_jtb_repartFocusLost
 
     /**
      * @param args the command line arguments
@@ -769,6 +959,8 @@ public class fPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -777,7 +969,11 @@ public class fPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable_client;
+    private javax.swing.JTable jTable_repar;
     private javax.swing.JButton jbot_actualizar;
     private javax.swing.JButton jbot_buscar;
     private javax.swing.JButton jbot_cancelar;

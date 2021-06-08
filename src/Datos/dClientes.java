@@ -14,7 +14,6 @@ public class dClientes {
     String nombre;
     String direccion;
     String telefono;
-    int pedido;
 
     public int getNumClient() {
         return NumClient;
@@ -47,14 +46,5 @@ public class dClientes {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
-    public int getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(int pedido) {
-        this.pedido = pedido;
-    }
-    
     
 }

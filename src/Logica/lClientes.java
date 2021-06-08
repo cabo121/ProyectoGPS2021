@@ -29,10 +29,9 @@ public class lClientes {
         DefaultTableModel modelo;
 
         String[] titulos = {"ID Cliente", "Nombre del cliente", 
-            "Direccion del Cliente", "Telefono del cliente", 
-            "Pedido"};
+            "Direccion del Cliente", "Telefono del cliente"};
         
-        String[] registros = new String[5];
+        String[] registros = new String[4];
         totalregistros = 0;
 
         modelo = new DefaultTableModel(null, titulos);
@@ -52,7 +51,6 @@ public class lClientes {
                 registros[1] = rs.getString("nombre");
                 registros[2] = rs.getString("direccion");
                 registros[3] = rs.getString("telefono");
-                registros[4] = rs.getString("pedido");
 
                 totalregistros = totalregistros + 1;
                 modelo.addRow(registros);
@@ -65,10 +63,46 @@ public class lClientes {
         }
     }
 
+     
+    public DefaultTableModel mostrar2(String buscar) {
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID Cliente", "Nombre del cliente"};
+        
+        String[] registros = new String[2];
+        totalregistros = 0;
+
+        modelo = new DefaultTableModel(null, titulos);
+
+        if (buscar.equals("")) {
+            sSQL = "select NumClient, nombre from clientes;";
+        } else {
+            sSQL = "select NumClient, nombre from clientes where NumClient = '" + buscar + "'";
+        }
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while (rs.next()) {
+                registros[0] = rs.getString("NumClient");
+                registros[1] = rs.getString("nombre");
+
+                totalregistros = totalregistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+     
     public boolean insertar(dClientes dts) {
         sSQL = "INSERT INTO clientes (`NumClient`, `nombre`, `direccion`, "
-                + "`telefono`, `pedido`) "
-                + "VALUES (?,?,?,?,?);";
+                + "`telefono`) "
+                + "VALUES (?,?,?,?);";
         try {
 
             PreparedStatement pst = cn.prepareStatement(sSQL);
@@ -76,7 +110,6 @@ public class lClientes {
             pst.setString(2, dts.getNombre());
             pst.setString(3, dts.getDireccion());
             pst.setString(4, dts.getTelefono());
-            pst.setInt(5, dts.getPedido());
 
             int n = pst.executeUpdate();
 
@@ -93,8 +126,7 @@ public class lClientes {
     }
 
     public boolean actualizar(dClientes dts) {
-        sSQL = "update clientes set nombre = ? , direccion = ? , telefono = ? , "
-                + "pedido = ? "
+        sSQL = "update clientes set nombre = ? , direccion = ? , telefono = ? "
                 + " where NumClient = ?;";
 
         try {
@@ -102,8 +134,7 @@ public class lClientes {
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getDireccion());
             pst.setString(3, dts.getTelefono());
-            pst.setInt(4, dts.getPedido());
-            pst.setInt(5, dts.getNumClient());
+            pst.setInt(4, dts.getNumClient());
 
             int n = pst.executeUpdate();
 

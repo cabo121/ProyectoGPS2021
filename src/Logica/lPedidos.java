@@ -54,13 +54,13 @@ public class lPedidos {
                 registros[1] = rs.getString("nombre");
                 registros[2] = rs.getString("NumClient");
                 registros[3] = rs.getString("cliente");
-                registros[4] = rs.getString("NumRepart");
+                registros[4] = rs.getString("id_repart");
                 registros[5] = rs.getString("repartidor");
                 registros[6] = rs.getString("fecha");
-                registros[6] = rs.getString("cant_azuc");
-                registros[6] = rs.getString("cant_int");
-                registros[6] = rs.getString("cant_fran");
-                registros[6] = rs.getString("cant_total");
+                registros[7] = rs.getString("cant_azuc");
+                registros[8] = rs.getString("cant_int");
+                registros[9] = rs.getString("cant_fran");
+                registros[10] = rs.getString("cant_total");
 
                 totalregistros = totalregistros + 1;
                 modelo.addRow(registros);
@@ -75,7 +75,7 @@ public class lPedidos {
 
     public boolean insertar(dPedidos dts) {
         sSQL = "INSERT INTO pedidos (`id_pedido`, `nombre`, `NumClient`, "
-                + "`cliente`, `NumRepart`, `repartidor`, `fecha` "
+                + "`cliente`, `id_repart`, `repartidor`, `fecha` "
                 + ", `cant_azuc` , `cant_int` , `cant_fran` , `cant_total`) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         try {
@@ -109,7 +109,7 @@ public class lPedidos {
 
     public boolean actualizar(dPedidos dts) {
         sSQL = "update pedidos set nombre = ? , NumClient = ? , "
-                + "cliente = ? , NumRepart = ? , repartidor = ?, "
+                + "cliente = ? , id_repart = ? , repartidor = ?, "
                 + "fecha = ? , cant_azuc = ? , cant_int = ? "
                 + ", cant_fran = ? , cant_total = ? "
                 + " where id_pedido = ?;";

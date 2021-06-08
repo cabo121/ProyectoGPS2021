@@ -16,7 +16,6 @@ public class dRepartidores {
     String direccion;
     String edad;
     int tipo;
-    int pedido;
 
     public int getId_repart() {
         return id_repart;
@@ -66,13 +65,4 @@ public class dRepartidores {
         this.tipo = tipo;
     }
 
-    public int getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(int pedido) {
-        this.pedido = pedido;
-    }
-    
-    
 }

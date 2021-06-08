@@ -5,6 +5,10 @@
  */
 package Frames;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -20,11 +24,14 @@ public class fPrincipal extends javax.swing.JFrame {
     public fPrincipal() {
         initComponents();
         //this.setExtendedState(formPaqueteria.MAXIMIZED_BOTH);
-        this.setSize(600, 400);
         this.setTitle("Panaderia la ESPIGA");
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
         setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        
+        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        fecha.setText(dtf3.format(LocalDateTime.now()));
+        
     }
 
     /**
@@ -47,48 +54,68 @@ public class fPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        fecha = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmnuArchivo = new javax.swing.JMenu();
         jmnu_nuevo = new javax.swing.JMenuItem();
+        jmnu_nuevo1 = new javax.swing.JMenuItem();
         jmnu_salir = new javax.swing.JMenuItem();
         jmnuCamiones = new javax.swing.JMenu();
         jmnu_empleados = new javax.swing.JMenuItem();
         jmnu_repart = new javax.swing.JMenuItem();
-        jmnu_usuarios = new javax.swing.JMenuItem();
-        jmnuConfiguraciones = new javax.swing.JMenu();
+        jmnuPedidos = new javax.swing.JMenu();
         jmnu_pan = new javax.swing.JMenuItem();
         jmnu_pedidos = new javax.swing.JMenuItem();
         jmnu_pedidos1 = new javax.swing.JMenuItem();
+        jmnuConfiguraciones = new javax.swing.JMenu();
+        jmnu_usuarios1 = new javax.swing.JMenuItem();
         jmnuAcercade = new javax.swing.JMenu();
         jmnuAcerca = new javax.swing.JMenuItem();
-        jmnuAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        escritorio.setBackground(new java.awt.Color(0, 0, 255));
+        escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio.setForeground(new java.awt.Color(255, 255, 255));
 
+        jlbl_per_id.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_per_id.setText("jLabel1");
 
+        jlbl_per_nomb.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_per_nomb.setText("jLabel2");
 
+        jlbl_rol.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_rol.setText("jLabel3");
 
+        jlbl_estado.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_estado.setText("jLabel1");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID de Personal:");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre del Personal:");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jLabel3.setText("Puesto del Personal:");
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Fecha de Ingreso:");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jLabel4.setText("Estado:");
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Tipo de usuario:");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel5.setText("BIENVENIDO");
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("BIENVENIDO !!");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/images.jpg"))); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Fecha:");
 
         escritorio.setLayer(jlbl_per_id, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jlbl_per_nomb, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -100,6 +127,9 @@ public class fPrincipal extends javax.swing.JFrame {
         escritorio.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(fecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -107,59 +137,77 @@ public class fPrincipal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbl_estado)
+                                    .addComponent(jlbl_rol))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbl_estado)
-                            .addComponent(jlbl_rol)
                             .addComponent(jlbl_per_nomb)
                             .addComponent(jlbl_per_id))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(120, 120, 120))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(escritorioLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_per_id))
-                    .addComponent(jLabel5))
+                .addGap(10, 10, 10)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8)
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_per_nomb)
+                        .addComponent(jlbl_per_id)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_rol)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_estado))
-                    .addGroup(escritorioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, escritorioLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbl_per_nomb)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbl_rol)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbl_estado))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
+        jmnuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Inicio.png"))); // NOI18N
         jmnuArchivo.setText("Archivo");
 
+        jmnu_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Archivo.png"))); // NOI18N
         jmnu_nuevo.setText("Nuevo Pedido");
         jmnu_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +216,16 @@ public class fPrincipal extends javax.swing.JFrame {
         });
         jmnuArchivo.add(jmnu_nuevo);
 
+        jmnu_nuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clientes.png"))); // NOI18N
+        jmnu_nuevo1.setText("Cerrar Sesion");
+        jmnu_nuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnu_nuevo1ActionPerformed(evt);
+            }
+        });
+        jmnuArchivo.add(jmnu_nuevo1);
+
+        jmnu_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Salir.png"))); // NOI18N
         jmnu_salir.setText("Salir");
         jmnu_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,8 +236,10 @@ public class fPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmnuArchivo);
 
+        jmnuCamiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Herramientas.png"))); // NOI18N
         jmnuCamiones.setText("Personal");
 
+        jmnu_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/trabajadores.png"))); // NOI18N
         jmnu_empleados.setText("Empleados");
         jmnu_empleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +248,7 @@ public class fPrincipal extends javax.swing.JFrame {
         });
         jmnuCamiones.add(jmnu_empleados);
 
+        jmnu_repart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clientes.png"))); // NOI18N
         jmnu_repart.setText("Repartidores");
         jmnu_repart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,46 +257,58 @@ public class fPrincipal extends javax.swing.JFrame {
         });
         jmnuCamiones.add(jmnu_repart);
 
-        jmnu_usuarios.setText("Usuarios");
-        jmnu_usuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmnu_usuariosActionPerformed(evt);
-            }
-        });
-        jmnuCamiones.add(jmnu_usuarios);
-
         jMenuBar1.add(jmnuCamiones);
 
-        jmnuConfiguraciones.setText("Pedidos");
+        jmnuPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Consultas.png"))); // NOI18N
+        jmnuPedidos.setText("Pedidos");
 
+        jmnu_pan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/productos.png"))); // NOI18N
         jmnu_pan.setText("Pan");
         jmnu_pan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnu_panActionPerformed(evt);
             }
         });
-        jmnuConfiguraciones.add(jmnu_pan);
+        jmnuPedidos.add(jmnu_pan);
 
+        jmnu_pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/pagos.png"))); // NOI18N
         jmnu_pedidos.setText("Pedidos");
         jmnu_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnu_pedidosActionPerformed(evt);
             }
         });
-        jmnuConfiguraciones.add(jmnu_pedidos);
+        jmnuPedidos.add(jmnu_pedidos);
 
+        jmnu_pedidos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clientes.png"))); // NOI18N
         jmnu_pedidos1.setText("Clientes");
         jmnu_pedidos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnu_pedidos1ActionPerformed(evt);
             }
         });
-        jmnuConfiguraciones.add(jmnu_pedidos1);
+        jmnuPedidos.add(jmnu_pedidos1);
+
+        jMenuBar1.add(jmnuPedidos);
+
+        jmnuConfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Configuraciones.png"))); // NOI18N
+        jmnuConfiguraciones.setText("Configuracion");
+
+        jmnu_usuarios1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/trabajadores.png"))); // NOI18N
+        jmnu_usuarios1.setText("Usuarios");
+        jmnu_usuarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnu_usuarios1ActionPerformed(evt);
+            }
+        });
+        jmnuConfiguraciones.add(jmnu_usuarios1);
 
         jMenuBar1.add(jmnuConfiguraciones);
 
+        jmnuAcercade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Ayuda.png"))); // NOI18N
         jmnuAcercade.setText("Ayuda");
 
+        jmnuAcerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Ayuda.png"))); // NOI18N
         jmnuAcerca.setText("Acerca de");
         jmnuAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,14 +316,6 @@ public class fPrincipal extends javax.swing.JFrame {
             }
         });
         jmnuAcercade.add(jmnuAcerca);
-
-        jmnuAyuda.setText("Ayuda");
-        jmnuAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmnuAyudaActionPerformed(evt);
-            }
-        });
-        jmnuAcercade.add(jmnuAyuda);
 
         jMenuBar1.add(jmnuAcercade);
 
@@ -260,11 +325,11 @@ public class fPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -312,31 +377,15 @@ public class fPrincipal extends javax.swing.JFrame {
     private void jmnuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuAcercaActionPerformed
         JOptionPane.showMessageDialog(this,
             "Instituto Tecnologico de La Laguna\n"
-            + "Gestion de Proyectos de Software\n"
-            + "Panaderia la Espiga v1.0\n\n"
+          + " Gestion de Proyectos de Software\n"
+          + "         Panaderia la Espiga v1.0\n\n"
             + "Autor: Armando Cabral Mtz \n15131296\n"
-            + "(C) Derechos Reservados 2017",
+            + "(C) Derechos Reservados 2021",
             "Acerca de",
             JOptionPane.INFORMATION_MESSAGE,
             new ImageIcon("src\\Files\\LOGO-ITL.png")
         );
     }//GEN-LAST:event_jmnuAcercaActionPerformed
-
-    private void jmnuAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuAyudaActionPerformed
-        JOptionPane.showMessageDialog(this,
-            "Proximamente...",
-            "Ayuda",
-            JOptionPane.INFORMATION_MESSAGE,
-            new ImageIcon("src\\Files\\Ayuda.png")
-        );
-    }//GEN-LAST:event_jmnuAyudaActionPerformed
-
-    private void jmnu_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_usuariosActionPerformed
-        fUsuarios form = new fUsuarios();
-        //        escritorio.add(form);
-        //        form.toFront();
-        form.setVisible(true);
-    }//GEN-LAST:event_jmnu_usuariosActionPerformed
 
     private void jmnu_pedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_pedidos1ActionPerformed
         fClientes form = new fClientes();
@@ -344,6 +393,28 @@ public class fPrincipal extends javax.swing.JFrame {
         //        form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jmnu_pedidos1ActionPerformed
+
+    private void jmnu_usuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_usuarios1ActionPerformed
+        fUsuarios form = new fUsuarios();
+        //        escritorio.add(form);
+        //        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jmnu_usuarios1ActionPerformed
+
+    private void jmnu_nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnu_nuevo1ActionPerformed
+        JOptionPane.showMessageDialog(this,
+            "Cierre de sesion correcto",
+            "Cierre de sesion",
+            JOptionPane.INFORMATION_MESSAGE,
+            new ImageIcon("src\\Files\\Ayuda.png")
+        );
+        
+        fUsuariologin form = new fUsuariologin();
+        //        escritorio.add(form);
+        //        form.toFront();
+        form.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmnu_nuevo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,12 +453,15 @@ public class fPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JLabel jlbl_estado;
     public static javax.swing.JLabel jlbl_per_id;
@@ -396,16 +470,17 @@ public class fPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmnuAcerca;
     private javax.swing.JMenu jmnuAcercade;
     private javax.swing.JMenu jmnuArchivo;
-    private javax.swing.JMenuItem jmnuAyuda;
     private javax.swing.JMenu jmnuCamiones;
     public static javax.swing.JMenu jmnuConfiguraciones;
+    public static javax.swing.JMenu jmnuPedidos;
     private javax.swing.JMenuItem jmnu_empleados;
     private javax.swing.JMenuItem jmnu_nuevo;
+    private javax.swing.JMenuItem jmnu_nuevo1;
     private javax.swing.JMenuItem jmnu_pan;
     private javax.swing.JMenuItem jmnu_pedidos;
     private javax.swing.JMenuItem jmnu_pedidos1;
     private javax.swing.JMenuItem jmnu_repart;
     private javax.swing.JMenuItem jmnu_salir;
-    private javax.swing.JMenuItem jmnu_usuarios;
+    private javax.swing.JMenuItem jmnu_usuarios1;
     // End of variables declaration//GEN-END:variables
 }

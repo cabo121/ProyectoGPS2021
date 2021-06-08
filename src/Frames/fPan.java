@@ -27,7 +27,8 @@ public class fPan extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
+        jtb_id.setEnabled(false);
     }
 
     private String accion = "Guardar";
@@ -132,6 +133,7 @@ public class fPan extends javax.swing.JFrame {
             }
         });
 
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +141,7 @@ public class fPan extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +149,7 @@ public class fPan extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +261,7 @@ public class fPan extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_pan);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +271,7 @@ public class fPan extends javax.swing.JFrame {
 
         jLabel8.setText("Buscar por ID de Pan:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/home.png"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +279,7 @@ public class fPan extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,6 +289,7 @@ public class fPan extends javax.swing.JFrame {
 
         jLabel9.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,12 +385,6 @@ public class fPan extends javax.swing.JFrame {
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
 
-        if (jtb_cantidad.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar ID");
-            jtb_id.requestFocus();
-            return;
-        }
-
         if (jtb_nombre.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre");
             jtb_nombre.requestFocus();
@@ -404,7 +406,6 @@ public class fPan extends javax.swing.JFrame {
         dPan dts = new dPan();
         lPan func = new lPan();
 
-        dts.setId_pan(Integer.parseInt(jtb_id.getText()));
         dts.setNombre(jtb_nombre.getText());
         dts.setClase(jtb_clase.getText());
         dts.setCantidad(Integer.parseInt(jtb_cantidad.getText()));
@@ -456,8 +457,8 @@ public class fPan extends javax.swing.JFrame {
 
         jtb_id.setText(jtable_pan.getValueAt(fila, 0).toString());
         jtb_nombre.setText(jtable_pan.getValueAt(fila, 1).toString());
-        jtb_clase.setText(jtable_pan.getValueAt(fila, 3).toString());
-        jtb_cantidad.setText(jtable_pan.getValueAt(fila, 4).toString());
+        jtb_clase.setText(jtable_pan.getValueAt(fila, 2).toString());
+        jtb_cantidad.setText(jtable_pan.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_jtable_panMouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
@@ -465,20 +466,21 @@ public class fPan extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!jtb_idBusc.getText().equals("")) {
+        if (!jtb_id.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane,
-                    "Estás seguro de Eliminar el Registro " + jtb_idBusc.getText()
+                    "Estás seguro de Eliminar el Registro " + jtb_id.getText()
                     + " ?", "Confirmar", 2);
-
+            
             if (confirmacion == 0) {
                 dPan dts = new dPan();
                 lPan func = new lPan();
 
-                dts.setId_pan(Integer.parseInt(jtb_idBusc.getText()));
+                dts.setId_pan(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
             }
+            jbot_guardar.setText("Guardar");
         }
     }//GEN-LAST:event_jbot_eliminarActionPerformed
 

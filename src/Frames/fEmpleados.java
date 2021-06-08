@@ -26,7 +26,8 @@ public class fEmpleados extends javax.swing.JFrame {
         habilitar();
         //pone la ventana en el Centro de la pantalla
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(fPrincipal.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(fPrincipal.ICONIFIED);
+        jtb_id.setEnabled(false);
     }
     
     private String accion = "Guardar";
@@ -90,6 +91,8 @@ public class fEmpleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -121,6 +124,8 @@ public class fEmpleados extends javax.swing.JFrame {
         jbot_actualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        jScrollPane1.setViewportView(jEditorPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
@@ -150,6 +155,7 @@ public class fEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jbot_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png"))); // NOI18N
         jbot_guardar.setText("Guardar");
         jbot_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +163,7 @@ public class fEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jbot_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancelar.png"))); // NOI18N
         jbot_cancelar.setText("Cancelar");
         jbot_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +171,7 @@ public class fEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jbot_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/page.png"))); // NOI18N
         jbot_nuevo.setText("Nuevo");
         jbot_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,6 +321,7 @@ public class fEmpleados extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtable_empleado);
 
+        jbot_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); // NOI18N
         jbot_eliminar.setText("Eliminar");
         jbot_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +331,7 @@ public class fEmpleados extends javax.swing.JFrame {
 
         jLabel8.setText("Buscar por ID de Empleado:");
 
+        jbot_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir.gif"))); // NOI18N
         jbot_salir.setText("Salir");
         jbot_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +339,7 @@ public class fEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jbot_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png"))); // NOI18N
         jbot_buscar.setText("Buscar");
         jbot_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +349,7 @@ public class fEmpleados extends javax.swing.JFrame {
 
         jLabel9.setText("Total de registros:");
 
+        jbot_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/clock.png"))); // NOI18N
         jbot_actualizar.setText("Actualizar");
         jbot_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,12 +452,6 @@ public class fEmpleados extends javax.swing.JFrame {
 
     private void jbot_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_guardarActionPerformed
 
-        if (jtb_edad.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar ID de empleado");
-            jtb_id.requestFocus();
-            return;
-        }
-
         if (jtb_nombre.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un nombre");
             jtb_nombre.requestFocus();
@@ -485,7 +491,6 @@ public class fEmpleados extends javax.swing.JFrame {
         dEmpleados dts = new dEmpleados();
         lEmpleados func = new lEmpleados();
 
-        dts.setId_empleado(Integer.parseInt(jtb_id.getText()));
         dts.setNombre(jtb_nombre.getText());
         dts.setDireccion(jtb_direccion.getText());
         dts.setTelefono(jtb_telefono.getText());
@@ -552,16 +557,16 @@ public class fEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jbot_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbot_eliminarActionPerformed
-        if (!jtb_idBusc.getText().equals("")) {
+        if (!jtb_id.getText().equals("")) {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane,
-                "Estás seguro de Eliminar el empleado " + jtb_idBusc.getText()
+                "Estás seguro de Eliminar el empleado " + jtb_id.getText()
                 + " ?", "Confirmar", 2);
 
             if (confirmacion == 0) {
                 dEmpleados dts = new dEmpleados();
                 lEmpleados func = new lEmpleados();
 
-                dts.setId_empleado(Integer.parseInt(jtb_idBusc.getText()));
+                dts.setId_empleado(Integer.parseInt(jtb_id.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 habilitar();
@@ -626,6 +631,7 @@ public class fEmpleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -638,6 +644,7 @@ public class fEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbot_actualizar;
     private javax.swing.JButton jbot_buscar;
